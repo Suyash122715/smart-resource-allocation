@@ -28,7 +28,6 @@ export default function AdminLayout() {
 
   const Sidebar = ({ mobile = false }) => (
     <div className={`flex flex-col h-full ${mobile ? '' : ''}`}>
-      {/* Logo */}
       <div className="p-6 border-b border-white/5">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center flex-shrink-0">
@@ -112,7 +111,7 @@ export default function AdminLayout() {
           </div>
         </div>
 
-        <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+        <div className="p-6 lg:p-8 max-w-7xl mx-auto w-full">
           <Outlet />
         </div>
       </main>

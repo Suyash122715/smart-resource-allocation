@@ -6,6 +6,7 @@ import api from '../../utils/api';
 import { Need, AdminStats } from '../../types';
 import { urgencyConfig, formatDate } from '../../utils/helpers';
 import { useAuthStore } from '../../store/authStore';
+import NotificationBell from '../../components/common/NotificationBell';
 
 export default function AdminDashboard() {
   const { user } = useAuthStore();
@@ -47,15 +48,20 @@ export default function AdminDashboard() {
   return (
     <div className="animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="font-display text-3xl font-bold text-white">Dashboard</h1>
           <p className="text-slate-400 mt-1">Good to see you, {user?.name?.split(' ')[0]} 👋</p>
         </div>
-        <Link to="/admin/post-need" className="btn-primary flex items-center gap-2">
-          <PlusCircle size={16} />
-          Post Need
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link to="/admin/post-need" className="btn-primary flex items-center gap-2">
+            <PlusCircle size={16} />
+            Post Need
+          </Link>
+          <div className="hidden lg:block">
+            <NotificationBell />
+          </div>
+        </div>
       </div>
 
       {/* Stats grid */}

@@ -6,6 +6,7 @@ import api from '../../utils/api';
 import { Need } from '../../types';
 import { urgencyConfig, SKILLS_OPTIONS } from '../../utils/helpers';
 import { useAuthStore } from '../../store/authStore';
+import NotificationBell from '../../components/common/NotificationBell';
 
 interface MatchedNeed { need: Need; matchPercent: number; isAccepted: boolean; }
 
@@ -61,17 +62,22 @@ export default function VolunteerDashboard() {
   return (
     <div className="animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="font-display text-3xl font-bold text-white">Matched Needs</h1>
           <p className="text-slate-400 mt-1">Opportunities ranked by your match score, {user?.name?.split(' ')[0]} 👋</p>
         </div>
-        <button
-          onClick={() => setShowFilters(p => !p)}
-          className={`btn-secondary flex items-center gap-2 text-sm ${showFilters ? 'border-brand-500/40 text-brand-400' : ''}`}
-        >
-          <Filter size={15} /> Filters
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowFilters(p => !p)}
+            className={`btn-secondary flex items-center gap-2 text-sm ${showFilters ? 'border-brand-500/40 text-brand-400' : ''}`}
+          >
+            <Filter size={15} /> Filters
+          </button>
+          <div className="hidden lg:block">
+            <NotificationBell />
+          </div>
+        </div>
       </div>
 
       {/* Filters */}
