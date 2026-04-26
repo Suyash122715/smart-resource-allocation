@@ -13,6 +13,8 @@ import matchRoutes from './routes/match';
 import assignmentRoutes from './routes/assignments';
 import volunteerRoutes from './routes/volunteer';
 import messageRoutes from './routes/messages';
+import mapRoutes from './routes/map';
+import notificationRoutes from './routes/notifications';
 import { setupSocket } from './services/socketService';
 
 const app = express();
@@ -40,6 +42,8 @@ app.use('/api/match', matchRoutes);
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/volunteer', volunteerRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/map', mapRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 app.get('/api/health', (_, res) => res.json({ status: 'ok', message: 'ImpactMatch API running' }));
 

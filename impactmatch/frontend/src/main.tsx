@@ -4,6 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import App from './App';
 import './index.css';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+const DefaultIcon = L.icon({ iconUrl, shadowUrl: iconShadow });
+L.Marker.prototype.options.icon = DefaultIcon;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

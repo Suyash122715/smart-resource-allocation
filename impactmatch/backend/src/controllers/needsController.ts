@@ -4,7 +4,10 @@ import Need from '../models/Need';
 import Organization from '../models/Organization';
 import Assignment from '../models/Assignment';
 import VolunteerProfile, { getBadge } from '../models/VolunteerProfile';
+import User from '../models/User';
+import Notification from '../models/Notification';
 import { AuthRequest } from '../middleware/auth';
+import { getIO } from '../services/socketService';
 
 // genAI is now initialized inside the controller functions to ensure the API key is loaded.
 
@@ -71,6 +74,38 @@ export const createNeed = async (req: AuthRequest, res: Response): Promise<void>
     }
 
     const need = await Need.create({ ...req.body, orgId: org._id });
+
+    // Emit real-time notification to all connected volunteers
+    try {
+      const io = getIO();
+      const notifPayload = {
+        needId: String(need._id),
+        title: need.title,
+        urgency: need.urgency,
+        location: need.location,
+        category: need.category,
+        orgName: org.name,
+      };
+      io.to('volunteers').emit('new_need_posted', notifPayload);
+
+      // Persist notification for every volunteer in DB
+      const volunteers = await User.find({ role: 'volunteer' }).select('_id');
+      if (volunteers.length > 0) {
+        await Notification.insertMany(
+          volunteers.map((v) => ({
+            userId: v._id,
+            type: 'new_need',
+            title: '🔔 New Task Available',
+            message: `${need.title} in ${need.location} (${need.urgency})`,
+            needId: need._id,
+            read: false,
+          }))
+        );
+      }
+    } catch (socketErr) {
+      console.error('Notification emit error:', socketErr);
+    }
+
     res.status(201).json({ need });
   } catch (err) {
     res.status(500).json({ message: 'Failed to create need', error: err });
@@ -134,6 +169,37 @@ export const fulfillNeed = async (req: AuthRequest, res: Response): Promise<void
     }
 
     res.json({ message: 'Task fulfilled and credits awarded', need, creditsAwarded: credits, volunteersRewarded: assignments.length });
+
+    // Emit real-time notification to the owning admin
+    try {
+      const io = getIO();
+      const adminOrg = await Organization.findById(need.orgId);
+      if (adminOrg) {
+        const fulfillPayload = {
+          needId: String(need._id),
+          title: need.title,
+          volunteersRewarded: assignments.length,
+          creditsAwarded: credits,
+        };
+        // Emit to the specific admin's socket if connected
+        io.to('volunteers').emit('task_fulfilled_notify', fulfillPayload); // for any listening volunteers
+        // Also emit directly to admin userId via connectedUsers
+        const adminUserId = String(adminOrg.adminUserId);
+        io.to(`admin_${adminUserId}`).emit('task_fulfilled_notify', fulfillPayload);
+
+        // Persist notification for admin
+        await Notification.create({
+          userId: adminOrg.adminUserId,
+          type: 'task_fulfilled',
+          title: '✅ Task Fulfilled',
+          message: `${need.title} — ${assignments.length} volunteer(s) rewarded ${credits} credits each`,
+          needId: need._id,
+          read: false,
+        });
+      }
+    } catch (socketErr) {
+      console.error('Fulfill notification error:', socketErr);
+    }
   } catch (err) {
     res.status(500).json({ message: 'Failed to fulfill need', error: err });
   }

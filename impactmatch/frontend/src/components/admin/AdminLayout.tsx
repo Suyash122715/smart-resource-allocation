@@ -1,19 +1,23 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, PlusCircle, LogOut, Building2, Menu, X } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, LogOut, Building2, Menu, X, Map } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { disconnectSocket } from '../../utils/socket';
 import toast from 'react-hot-toast';
+import { useNotifications } from '../../hooks/useNotifications';
+import NotificationBell from '../common/NotificationBell';
 
 const navItems = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/admin/post-need', label: 'Post Need', icon: PlusCircle, end: false },
+  { to: '/admin/map', label: 'Impact Map', icon: Map, end: false },
 ];
 
 export default function AdminLayout() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  useNotifications();
 
   const handleLogout = () => {
     disconnectSocket();
@@ -100,8 +104,11 @@ export default function AdminLayout() {
             <Menu size={22} />
           </button>
           <span className="font-display font-bold text-white">ImpactMatch</span>
-          <div className="w-8 h-8 rounded-full bg-brand-500/20 flex items-center justify-center">
-            <span className="text-brand-400 font-bold text-xs">{user?.name[0]}</span>
+          <div className="flex items-center gap-2">
+            <NotificationBell />
+            <div className="w-8 h-8 rounded-full bg-brand-500/20 flex items-center justify-center">
+              <span className="text-brand-400 font-bold text-xs">{user?.name[0]}</span>
+            </div>
           </div>
         </div>
 

@@ -11,12 +11,14 @@ import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import PostNeed from './pages/admin/PostNeed';
 import TaskDetail from './pages/admin/TaskDetail';
+import AdminMapView from './pages/admin/MapView';
 
 // Volunteer
 import VolunteerLayout from './components/volunteer/VolunteerLayout';
 import VolunteerDashboard from './pages/volunteer/VolunteerDashboard';
 import VolunteerProfile from './pages/volunteer/VolunteerProfile';
 import VolunteerTask from './pages/volunteer/VolunteerTask';
+import VolunteerMapView from './pages/volunteer/MapView';
 
 const PrivateRoute = ({ children, role }: { children: React.ReactNode; role?: 'admin' | 'volunteer' }) => {
   const { isAuthenticated, user } = useAuthStore();
@@ -44,6 +46,7 @@ export default function App() {
         <Route index element={<AdminDashboard />} />
         <Route path="post-need" element={<PostNeed />} />
         <Route path="task/:id" element={<TaskDetail />} />
+        <Route path="map" element={<AdminMapView />} />
       </Route>
 
       {/* Volunteer */}
@@ -51,6 +54,7 @@ export default function App() {
         <Route index element={<VolunteerDashboard />} />
         <Route path="profile" element={<VolunteerProfile />} />
         <Route path="task/:id" element={<VolunteerTask />} />
+        <Route path="map" element={<VolunteerMapView />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

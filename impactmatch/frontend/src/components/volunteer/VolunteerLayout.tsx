@@ -1,19 +1,23 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, User, LogOut, Handshake, Menu, X } from 'lucide-react';
+import { LayoutDashboard, User, LogOut, Handshake, Menu, X, Map } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { disconnectSocket } from '../../utils/socket';
 import toast from 'react-hot-toast';
+import { useNotifications } from '../../hooks/useNotifications';
+import NotificationBell from '../common/NotificationBell';
 
 const navItems = [
   { to: '/volunteer', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/volunteer/profile', label: 'My Profile', icon: User, end: false },
+  { to: '/volunteer/map', label: 'Impact Map', icon: Map, end: false },
 ];
 
 export default function VolunteerLayout() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  useNotifications();
 
   const handleLogout = () => {
     disconnectSocket();
@@ -79,8 +83,11 @@ export default function VolunteerLayout() {
         <div className="lg:hidden sticky top-0 z-20 bg-surface-900/80 backdrop-blur-xl border-b border-white/5 px-4 h-14 flex items-center justify-between">
           <button onClick={() => setMobileOpen(true)} className="text-slate-400 hover:text-white"><Menu size={22} /></button>
           <span className="font-display font-bold text-white">ImpactMatch</span>
-          <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center">
-            <span className="text-accent-400 font-bold text-xs">{user?.name[0]}</span>
+          <div className="flex items-center gap-2">
+            <NotificationBell />
+            <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center">
+              <span className="text-accent-400 font-bold text-xs">{user?.name[0]}</span>
+            </div>
           </div>
         </div>
         <div className="p-6 lg:p-8 max-w-7xl mx-auto">

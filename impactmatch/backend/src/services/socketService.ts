@@ -6,7 +6,17 @@ interface AuthSocket extends Socket {
   user?: { id: string; role: string; name: string };
 }
 
+// Track connected users: userId -> socketId
+const connectedUsers = new Map<string, string>();
+
+// Module-level io reference so controllers can emit
+let _io: Server;
+
+export const getIO = (): Server => _io;
+export const getConnectedUsers = (): Map<string, string> => connectedUsers;
+
 export const setupSocket = (io: Server): void => {
+  _io = io;
   io.use((socket: AuthSocket, next) => {
     const token = socket.handshake.auth.token;
     if (!token) return next(new Error('Authentication error'));
@@ -21,6 +31,16 @@ export const setupSocket = (io: Server): void => {
 
   io.on('connection', (socket: AuthSocket) => {
     console.log(`Socket connected: ${socket.user?.name}`);
+
+    // Track user and join role-based notification room
+    if (socket.user?.id) {
+      connectedUsers.set(socket.user.id, socket.id);
+      if (socket.user.role === 'volunteer') {
+        socket.join('volunteers');
+      } else if (socket.user.role === 'admin') {
+        socket.join(`admin_${socket.user.id}`);
+      }
+    }
 
     socket.on('join_room', (taskId: string) => {
       socket.join(taskId);
@@ -57,6 +77,7 @@ export const setupSocket = (io: Server): void => {
 
     socket.on('disconnect', () => {
       console.log(`Socket disconnected: ${socket.user?.name}`);
+      if (socket.user?.id) connectedUsers.delete(socket.user.id);
     });
   });
 };

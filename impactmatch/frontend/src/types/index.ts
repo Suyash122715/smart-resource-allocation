@@ -89,3 +89,14 @@ export interface ExtractedNeed {
   schedule: string;
   scheduleDays: string[];
 }
+
+export interface Notification {
+  _id: string;
+  userId: string;
+  type: 'new_need' | 'task_fulfilled';
+  title: string;
+  message: string;
+  needId: string;
+  read: boolean;
+  createdAt: string;
+}
