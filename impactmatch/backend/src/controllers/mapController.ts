@@ -4,6 +4,7 @@ import Assignment from '../models/Assignment';
 import { AuthRequest } from '../middleware/auth';
 
 const LOCATION_COORDS: Record<string, { lat: number; lng: number }> = {
+  // Bangalore areas
   'koramangala':     { lat: 12.9352, lng: 77.6245 },
   'indiranagar':     { lat: 12.9784, lng: 77.6408 },
   'whitefield':      { lat: 12.9698, lng: 77.7499 },
@@ -14,6 +15,16 @@ const LOCATION_COORDS: Record<string, { lat: number; lng: number }> = {
   'jp nagar':        { lat: 12.9063, lng: 77.5857 },
   'bannerghatta':    { lat: 12.8005, lng: 77.5773 },
   'yelahanka':       { lat: 13.1004, lng: 77.5963 },
+  // Other major cities & states
+  'odisha':          { lat: 20.9517, lng: 85.0985 },
+  'bhubaneswar':     { lat: 20.2961, lng: 85.8245 },
+  'mumbai':          { lat: 19.0760, lng: 72.8777 },
+  'delhi':           { lat: 28.7041, lng: 77.1025 },
+  'chennai':         { lat: 13.0827, lng: 80.2707 },
+  'kolkata':         { lat: 22.5726, lng: 88.3639 },
+  'pune':            { lat: 18.5204, lng: 73.8567 },
+  'hyderabad':       { lat: 17.3850, lng: 78.4867 },
+  'ahmedabad':       { lat: 23.0225, lng: 72.5714 },
 };
 
 const URGENCY_ORDER: Record<string, number> = {
