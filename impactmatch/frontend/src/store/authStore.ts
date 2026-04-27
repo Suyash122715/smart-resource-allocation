@@ -10,8 +10,8 @@ interface AuthState {
   setUser: (user: User) => void;
 }
 
-const storedUser = localStorage.getItem('user');
-const storedToken = localStorage.getItem('token');
+const storedUser = sessionStorage.getItem('user');
+const storedToken = sessionStorage.getItem('token');
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: storedUser ? JSON.parse(storedUser) : null,
@@ -19,19 +19,19 @@ export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: !!storedToken,
 
   login: (user, token) => {
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('token', token);
     set({ user, token, isAuthenticated: true });
   },
 
   logout: () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
     set({ user: null, token: null, isAuthenticated: false });
   },
 
   setUser: (user) => {
-    localStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user));
     set({ user });
   },
 }));
