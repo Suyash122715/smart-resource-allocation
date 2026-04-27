@@ -2,6 +2,7 @@ services:
   - type: web
     name: aultrix-backend
     env: node
+    plan: free
     rootDir: impactmatch/backend
     buildCommand: npm install && npm run build
     startCommand: npm start
