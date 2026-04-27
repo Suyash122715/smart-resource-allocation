@@ -20,7 +20,7 @@ export default function Register() {
     try {
       const { data } = await api.post('/api/auth/register', { ...form, role });
       login(data.user, data.token);
-      toast.success(`Welcome to ImpactMatch, ${data.user.name}!`);
+      toast.success(`Welcome to Aultrix, ${data.user.name}!`);
       navigate(role === 'admin' ? '/admin' : '/volunteer');
     } catch (err: any) {
       toast.error(err.response?.data?.message || 'Registration failed');
@@ -35,9 +35,9 @@ export default function Register() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6">
             <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
-              <span className="text-white font-bold font-display">IM</span>
+              <span className="text-white font-bold font-display">AX</span>
             </div>
-            <span className="font-display font-bold text-xl text-white">ImpactMatch</span>
+            <span className="font-display font-bold text-xl text-white">Aultrix</span>
           </Link>
           <h1 className="font-display text-3xl font-bold text-white mb-2">Create your account</h1>
           <p className="text-slate-400">Join the impact movement</p>

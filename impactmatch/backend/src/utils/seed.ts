@@ -23,7 +23,7 @@ const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 
 async function seed() {
   try {
-    const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/impactmatch';
+    const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/aultrix';
     console.log(`📡 Attempting to connect to MongoDB at: ${uri}...`);
     
     await mongoose.connect(uri, {
@@ -41,7 +41,7 @@ async function seed() {
     // Create admin
     const admin = await User.create({
       name: 'Priya Sharma',
-      email: 'admin@impactmatch.org',
+      email: 'admin@aultrix.org',
       password: 'admin123',
       role: 'admin',
     });
@@ -52,7 +52,7 @@ async function seed() {
       description: 'Coordinating relief efforts across Bangalore',
     });
 
-    console.log('✅ Admin created: admin@impactmatch.org / admin123');
+    console.log('✅ Admin created: admin@aultrix.org / admin123');
 
     // Create volunteers
     const volunteerData = [

@@ -27,7 +27,7 @@ const Sidebar = ({ user, setMobileOpen, handleLogout }: SidebarProps) => (
           <Handshake size={18} className="text-white" />
         </div>
         <div>
-          <div className="font-display font-bold text-white text-sm">ImpactMatch</div>
+          <div className="font-display font-bold text-white text-sm">Aultrix</div>
           <div className="text-slate-500 text-xs">Volunteer Portal</div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function VolunteerLayout() {
       <main className="flex-1 lg:ml-64 min-h-screen">
         <div className="lg:hidden sticky top-0 z-20 bg-surface-900/80 backdrop-blur-xl border-b border-white/5 px-4 h-14 flex items-center justify-between">
           <button onClick={() => setMobileOpen(true)} className="text-slate-400 hover:text-white"><Menu size={22} /></button>
-          <span className="font-display font-bold text-white">ImpactMatch</span>
+          <span className="font-display font-bold text-white">Aultrix</span>
           <div className="flex items-center gap-2">
             <NotificationBell />
             <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center">

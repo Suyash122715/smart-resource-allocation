@@ -33,9 +33,9 @@ export default function Login() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6">
             <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
-              <span className="text-white font-bold font-display">IM</span>
+              <span className="text-white font-bold font-display">AX</span>
             </div>
-            <span className="font-display font-bold text-xl text-white">ImpactMatch</span>
+            <span className="font-display font-bold text-xl text-white">Aultrix</span>
           </Link>
           <h1 className="font-display text-3xl font-bold text-white mb-2">Welcome back</h1>
           <p className="text-slate-400">Sign in to your account</p>
@@ -45,7 +45,7 @@ export default function Login() {
           {/* Demo credentials hint */}
           <div className="bg-brand-500/10 border border-brand-500/20 rounded-xl p-3 mb-6 text-xs font-mono">
             <div className="text-brand-400 font-semibold mb-1">Demo Credentials</div>
-            <div className="text-slate-400">Admin: admin@impactmatch.org / admin123</div>
+            <div className="text-slate-400">Admin: admin@aultrix.org / admin123</div>
             <div className="text-slate-400">Volunteer: arjun@email.com / volunteer123</div>
           </div>
 

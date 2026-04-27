@@ -28,7 +28,7 @@ const Sidebar = ({ mobile = false, user, setMobileOpen, handleLogout }: SidebarP
           <Building2 size={18} className="text-white" />
         </div>
         <div>
-          <div className="font-display font-bold text-white text-sm">ImpactMatch</div>
+          <div className="font-display font-bold text-white text-sm">Aultrix</div>
           <div className="text-slate-500 text-xs">NGO Portal</div>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function AdminLayout() {
           <button onClick={() => setMobileOpen(true)} className="text-slate-400 hover:text-white">
             <Menu size={22} />
           </button>
-          <span className="font-display font-bold text-white">ImpactMatch</span>
+          <span className="font-display font-bold text-white">Aultrix</span>
           <div className="flex items-center gap-2">
             <NotificationBell />
             <div className="w-8 h-8 rounded-full bg-brand-500/20 flex items-center justify-center">

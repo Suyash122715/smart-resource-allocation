@@ -1,7 +1,7 @@
-# ImpactMatch 🌱 
+# Aultrix 🌱 
 ### *The right volunteer, at the right place, at the right time.*
 
-ImpactMatch is a state-of-the-art, full-stack AI-powered platform designed to bridge the gap between NGOs and volunteers. Using **Gemini 2.5 Flash**, it automatically structures community needs and intelligently matches them with the most suitable volunteers based on skills, location, and urgency.
+Aultrix is a state-of-the-art, full-stack AI-powered platform designed to bridge the gap between NGOs and volunteers. Using **Gemini 2.5 Flash**, it automatically structures community needs and intelligently matches them with the most suitable volunteers based on skills, location, and urgency.
 
 ---
 
@@ -36,7 +36,7 @@ ImpactMatch is a state-of-the-art, full-stack AI-powered platform designed to br
 ## 📁 Project Structure
 
 ```bash
-impactmatch/
+aultrix/
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/    # Business logic (Auth, Needs, Matching)
@@ -83,7 +83,7 @@ npm run dev      # Start frontend on port 5173
 ## 🔐 Demo Credentials
 | Role | Email | Password |
 |------|-------|----------|
-| **NGO Admin** | `admin@impactmatch.org` | `admin123` |
+| **NGO Admin** | `admin@aultrix.org` | `admin123` |
 | **Volunteer** | `arjun@email.com` | `volunteer123` |
 
 ---

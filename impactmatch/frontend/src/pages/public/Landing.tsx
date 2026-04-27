@@ -16,7 +16,7 @@ const features = [
 ];
 
 const testimonials = [
-  { name: 'Priya Sharma', role: 'NGO Director', text: 'ImpactMatch cut our volunteer coordination time by 80%. The AI extraction is magic.' },
+  { name: 'Priya Sharma', role: 'NGO Director', text: 'Aultrix cut our volunteer coordination time by 80%. The AI extraction is magic.' },
   { name: 'Arjun Reddy', role: 'Volunteer, Champion ⭐', text: 'I love seeing my match score. I know exactly which tasks suit my skills.' },
 ];
 
@@ -28,9 +28,9 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
-              <span className="text-white font-bold text-sm font-display">IM</span>
+              <span className="text-white font-bold text-sm font-display">AX</span>
             </div>
-            <span className="font-display font-bold text-lg text-white">ImpactMatch</span>
+            <span className="font-display font-bold text-lg text-white">Aultrix</span>
           </div>
           <div className="flex items-center gap-3">
             <Link to="/login" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Sign In</Link>
@@ -58,7 +58,7 @@ export default function Landing() {
           </h1>
 
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            ImpactMatch connects NGOs to skilled volunteers using AI extraction and intelligent scoring. Post a need in plain English. Get matched volunteers in seconds.
+            Aultrix connects NGOs to skilled volunteers using AI extraction and intelligent scoring. Post a need in plain English. Get matched volunteers in seconds.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -157,7 +157,7 @@ export default function Landing() {
         <div className="max-w-3xl mx-auto text-center glass p-12 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-brand-500/10 to-transparent pointer-events-none" />
           <h2 className="font-display text-4xl font-bold text-white mb-4 relative z-10">Ready to create impact?</h2>
-          <p className="text-slate-400 mb-8 relative z-10">Join hundreds of NGOs and thousands of volunteers already using ImpactMatch.</p>
+          <p className="text-slate-400 mb-8 relative z-10">Join hundreds of NGOs and thousands of volunteers already using Aultrix.</p>
           <div className="flex gap-4 justify-center relative z-10">
             <Link to="/register?role=admin" className="btn-primary flex items-center gap-2">
               I'm an NGO <ArrowRight size={16} />
@@ -173,9 +173,9 @@ export default function Landing() {
       <footer className="border-t border-white/5 py-8 px-6 text-center">
         <div className="flex items-center justify-center gap-2 mb-2">
           <div className="w-6 h-6 rounded bg-brand-500 flex items-center justify-center">
-            <span className="text-white font-bold text-xs">IM</span>
+            <span className="text-white font-bold text-xs">AX</span>
           </div>
-          <span className="font-display font-bold text-white">ImpactMatch</span>
+          <span className="font-display font-bold text-white">Aultrix</span>
         </div>
         <p className="text-slate-600 text-sm">The right volunteer, at the right place, at the right time.</p>
       </footer>
