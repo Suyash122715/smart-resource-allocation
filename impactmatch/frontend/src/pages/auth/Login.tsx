@@ -45,7 +45,7 @@ export default function Login() {
           {/* Demo credentials hint */}
           <div className="bg-brand-500/10 border border-brand-500/20 rounded-xl p-3 mb-6 text-xs font-mono">
             <div className="text-brand-400 font-semibold mb-1">Demo Credentials</div>
-            <div className="text-slate-400">Admin: admin@aultrix.org / admin123</div>
+            <div className="text-slate-400">Admin: admin@impactmatch.org / admin123</div>
             <div className="text-slate-400">Volunteer: arjun@email.com / volunteer123</div>
           </div>
 
